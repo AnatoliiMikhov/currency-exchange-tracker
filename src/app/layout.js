@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
         {/* Додано: компонент шапки сайту (Header) */}
         <header className="bg-gray-800 text-white p-4 shadow-md">
           <div className="container mx-auto flex justify-between items-center">
-            <h1 className="text-2xl font-bold">Currency Exchange Rate Tracker</h1>
+            <h1 className="text-2xl font-bold text-gray-400">Currency Exchange Rate Tracker</h1>
             <nav>
               {/* Місце для посилань навігації */}
             </nav>
