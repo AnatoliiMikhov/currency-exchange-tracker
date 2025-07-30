@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { useState, useEffect } from 'react';
 
@@ -6,7 +6,7 @@ const CurrencyConverter = () => {
   const [rates, setRates] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [amount, setAmount] = useState(1);
+  const [amount, setAmount] = useState('');
   const [fromCurrency, setFromCurrency] = useState('USD');
   const [toCurrency, setToCurrency] = useState('UAH');
   const [convertedAmount, setConvertedAmount] = useState(null);
@@ -41,7 +41,7 @@ const CurrencyConverter = () => {
   }, []);
 
   useEffect(() => {
-    if (rates) {
+    if (rates && amount) {
       const rateFrom = rates[fromCurrency];
       const rateTo = rates[toCurrency];
       const converted = (amount / rateFrom) * rateTo;
@@ -51,9 +51,11 @@ const CurrencyConverter = () => {
 
   const handleAmountChange = (e) => {
     const value = e.target.value;
-    // Allow empty input and numbers
     if (value === '' || /^[0-9]*\.?[0-9]*$/.test(value)) {
-        setAmount(value);
+      setAmount(value);
+      if (value === '') {
+        setConvertedAmount(null);
+      }
     }
   };
 
@@ -71,41 +73,63 @@ const CurrencyConverter = () => {
         <h3 className="text-xl font-semibold mb-4 text-gray-700">Currency Converter</h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
           <div className="col-span-1">
-            <label htmlFor="amount" className="block text-sm font-medium text-gray-700">Amount</label>
+            <label
+              htmlFor="amount"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Amount
+            </label>
             <input
               type="text"
               id="amount"
               value={amount}
               onChange={handleAmountChange}
-              className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+              placeholder="Enter amount"
+              className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm placeholder-gray-400"
             />
           </div>
           <div>
-            <label htmlFor="from" className="block text-sm font-medium text-gray-700">From</label>
+            <label
+              htmlFor="from"
+              className="block text-sm font-medium text-gray-700"
+            >
+              From
+            </label>
             <select
               id="from"
               value={fromCurrency}
               onChange={(e) => setFromCurrency(e.target.value)}
-              className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+              className="mt-1 block w-full pl-3 pr-10 py-2 text-base text-gray-400 border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
             >
-              {currencies.map(currency => <option key={currency}>{currency}</option>)}
+              {currencies.map((currency) => (
+                <option key={currency}>{currency}</option>
+              ))}
             </select>
           </div>
           <div>
-            <label htmlFor="to" className="block text-sm font-medium text-gray-700">To</label>
+            <label
+              htmlFor="to"
+              className="block text-sm font-medium text-gray-700"
+            >
+              To
+            </label>
             <select
               id="to"
               value={toCurrency}
               onChange={(e) => setToCurrency(e.target.value)}
-              className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+              className="mt-1 block w-full pl-3 pr-10 py-2 text-base text-gray-400 border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
             >
-              {currencies.map(currency => <option key={currency}>{currency}</option>)}
+              {currencies.map((currency) => (
+                <option key={currency}>{currency}</option>
+              ))}
             </select>
           </div>
         </div>
         <div className="mt-6 text-center">
           <p className="text-lg text-gray-600">Converted Amount:</p>
-          <p className="text-2xl font-bold text-indigo-600">{convertedAmount} {toCurrency}</p>
+          <p className="text-2xl font-bold text-indigo-600">
+            {convertedAmount ? `${convertedAmount} ${toCurrency}` : '-'}
+          </p>
         </div>
       </div>
     </div>
