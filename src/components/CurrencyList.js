@@ -25,6 +25,7 @@ const CurrencyList = () => {
           EUR: data.conversion_rates.EUR,
           GBP: data.conversion_rates.GBP,
           PLN: data.conversion_rates.PLN,
+          DKK: data.conversion_rates.DKK,
         };
         setRates(filteredRates);
       } catch (e) {
@@ -66,7 +67,7 @@ const CurrencyList = () => {
               {rates && Object.entries(rates).map(([currency, rate]) => (
                 <tr key={currency}>
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{currency}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{rate}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{rate}</td>
                 </tr>
               ))}
             </tbody>
