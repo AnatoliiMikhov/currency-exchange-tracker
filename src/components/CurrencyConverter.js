@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useState, useEffect } from 'react';
 
@@ -65,7 +65,7 @@ const CurrencyConverter = () => {
   };
 
   if (loading) {
-    return <div className="text-center p-4">Loading converter...</div>;
+    return <div className="text-center p-4 text-gray-700">Loading converter...</div>;
   }
 
   if (error) {
@@ -73,14 +73,16 @@ const CurrencyConverter = () => {
   }
 
   return (
-    <div className="w-full max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl mt-8">
+    <div className="w-full max-w-md mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden md:max-w-2xl mt-8 transform transition duration-500 hover:scale-105">
       <div className="p-8">
-        <h3 className="text-xl font-semibold mb-4 text-gray-700">Currency Converter</h3>
-        <div className="grid grid-cols-1 md:grid-cols-[1fr,auto,1fr] gap-4 items-end">
-          <div className="col-span-1">
+        <h3 className="text-xl font-semibold mb-4 text-gray-700 dark:text-gray-100">Currency Converter</h3>
+        {/* Grid layout for Amount, From, Reverse, To fields */}
+        <div className="grid grid-cols-1 sm:grid-cols-[1fr,auto,1fr] gap-4 items-end">
+          {/* Amount Input */}
+          <div className="col-span-1 mb-8"> {/* Додано mb-8 тут */}
             <label
               htmlFor="amount"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300"
             >
               Amount
             </label>
@@ -90,13 +92,14 @@ const CurrencyConverter = () => {
               value={amount}
               onChange={handleAmountChange}
               placeholder="Enter amount"
-              className="mt-1 block w-full px-3 py-2 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm placeholder-gray-400 text-gray-900"
+              className="mt-1 block w-full px-3 py-2 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm placeholder-gray-400 dark:placeholder-gray-500 text-gray-900 dark:text-white"
             />
           </div>
-          <div className="col-span-1">
+          {/* From Currency Selector */}
+          <div className="col-span-1 mb-6">
             <label
               htmlFor="from"
-              className="block text-sm font-medium text-gray-900"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300"
             >
               From
             </label>
@@ -104,28 +107,30 @@ const CurrencyConverter = () => {
               id="from"
               value={fromCurrency}
               onChange={(e) => setFromCurrency(e.target.value)}
-              className="mt-1 block w-full pl-3 pr-10 py-2 text-base text-gray-400 border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+              className="mt-1 block w-full pl-3 pr-10 py-2 text-base text-gray-900 dark:text-white bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
             >
               {currencies.map((currency) => (
-                <option key={currency}>{currency}</option>
+                <option key={currency} value={currency}>{currency}</option>
               ))}
             </select>
           </div>
-          <div className="flex items-end">
+          {/* Reverse Button */}
+          <div className="flex items-end justify-center">
             <button
               onClick={handleReverseCurrencies}
-              className="p-2 bg-gray-200 rounded-md hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+              className="p-2 bg-gray-200 dark:bg-gray-600 rounded-full hover:bg-gray-300 dark:hover:bg-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transform transition duration-200 hover:scale-110"
               aria-label="Reverse currencies"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-600 dark:text-gray-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
               </svg>
             </button>
           </div>
+          {/* To Currency Selector */}
           <div>
             <label
               htmlFor="to"
-              className="block text-sm font-medium text-gray-900"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300"
             >
               To
             </label>
@@ -133,17 +138,17 @@ const CurrencyConverter = () => {
               id="to"
               value={toCurrency}
               onChange={(e) => setToCurrency(e.target.value)}
-              className="mt-1 block w-full pl-3 pr-10 py-2 text-base text-gray-400 border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+              className="mt-1 block w-full pl-3 pr-10 py-2 text-base text-gray-900 dark:text-white bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
             >
               {currencies.map((currency) => (
-                <option key={currency}>{currency}</option>
+                <option key={currency} value={currency}>{currency}</option>
               ))}
             </select>
           </div>
         </div>
         <div className="mt-6 text-center">
-          <p className="text-lg text-gray-600">Converted Amount:</p>
-          <p className="text-2xl font-bold text-indigo-600">
+          <p className="text-lg text-gray-600 dark:text-gray-300">Converted Amount:</p>
+          <p className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">
             {convertedAmount ? `${convertedAmount} ${toCurrency}` : '-'}
           </p>
         </div>

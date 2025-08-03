@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState, useEffect } from 'react';
@@ -39,7 +38,7 @@ const CurrencyList = () => {
   }, []);
 
   if (loading) {
-    return <div className="text-center p-4">Loading exchange rates...</div>;
+    return <div className="text-center p-4 text-gray-700">Loading exchange rates...</div>;
   }
 
   if (error) {
@@ -47,27 +46,26 @@ const CurrencyList = () => {
   }
 
   return (
-    <div className="w-full max-w-md mx-auto bg-white rounded-xl shadow-md overflow-hidden md:max-w-2xl mt-8">
+    <div className="w-full max-w-md mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden md:max-w-2xl mt-8 transform transition duration-500 hover:scale-105">
       <div className="p-8">
-        <div className="uppercase tracking-wide text-sm text-indigo-500 font-semibold">Exchange Rates</div>
-        <p className="block mt-1 text-lg leading-tight font-medium text-black">Base Currency: UAH</p>
+        {/* Надписи "Exchange Rates" та "Base Currency: UAH" видалено */}
         <div className="mt-4">
-          <table className="min-w-full">
-            <thead className="bg-gray-50">
+          <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+            <thead className="bg-gray-50 dark:bg-gray-900">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                   Currency
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
                   Rate
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
               {rates && Object.entries(rates).map(([currency, rate]) => (
-                <tr key={currency}>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{currency}</td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">{rate}</td>
+                <tr key={currency} className="hover:bg-gray-100 dark:hover:bg-gray-700">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">{currency}</td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-gray-100">{rate.toFixed(4)}</td>
                 </tr>
               ))}
             </tbody>

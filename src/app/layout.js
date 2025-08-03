@@ -1,14 +1,12 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Roboto } from "next/font/google"; // Імпортуємо шрифт Roboto
 import "./globals.css";
+import Header from "@/layouts/Header";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+// Визначаємо шрифт Roboto
+const roboto = Roboto({
+  weight: ['300', '400', '500', '700'], // Вибираємо потрібні ваги шрифту
+  subsets: ["latin", "cyrillic"], // Додаємо кирилицю для української мови
+  variable: "--font-roboto", // Визначаємо CSS-змінну для шрифту
 });
 
 export const metadata = {
@@ -19,22 +17,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="uk">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        {/* Додано: компонент шапки сайту (Header) */}
-        <header className="bg-gray-800 text-white p-4 shadow-md">
-          <div className="container mx-auto flex justify-between items-center">
-            <h1 className="text-2xl font-bold text-gray-400">Currency Exchange Rate Tracker</h1>
-            <nav>
-              {/* Місце для посилань навігації */}
-            </nav>
-          </div>
-        </header>
+      {/* Застосовуємо шрифт Roboto до body */}
+      <body className={`${roboto.variable} font-sans antialiased`}>
+        <Header />
 
-        {/* Додано: основний контейнер для вмісту сторінок (Main Content Area) */}
         <main className="container mx-auto p-4">
           {children}
         </main>
-
       </body>
     </html>
   );
