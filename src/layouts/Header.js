@@ -9,28 +9,28 @@ export default function Header() {
       <div className="container mx-auto flex flex-col sm:flex-row justify-between items-center">
         <Link 
           href="/" 
-          className="text-2xl font-bold text-gray-600 dark:text-gray-400 mb-2 sm:mb-0 hover:text-gray-900 dark:hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 rounded-lg px-2 py-1 transition-all duration-200"
+          className="text-2xl font-bold text-gray-600 dark:text-gray-400 mb-2 sm:mb-0 rounded-lg px-2 py-1 transition-colors duration-200 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:bg-gray-200 dark:focus:bg-gray-700"
         >
           Currency Exchange Rate Tracker
         </Link>
         
-        <div className="flex items-center space-x-4">
-          <nav className="flex space-x-4">
+        <div className="flex items-center space-x-2">
+          <nav className="flex items-center space-x-2">
             <Link 
               href="/" 
-              className="text-gray-500 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 rounded-md px-2 py-1 transition-all duration-200"
+              className="text-gray-500 dark:text-gray-300 rounded-md px-3 py-2 transition-colors duration-200 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:bg-gray-200 dark:focus:bg-gray-700"
             >
               Головна
             </Link>
             <Link 
               href="/news" 
-              className="text-gray-500 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 rounded-md px-2 py-1 transition-all duration-200"
+              className="text-gray-500 dark:text-gray-300 rounded-md px-3 py-2 transition-colors duration-200 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:bg-gray-200 dark:focus:bg-gray-700"
             >
               Новини
             </Link>
             <Link 
               href="/history" 
-              className="text-gray-500 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 rounded-md px-2 py-1 transition-all duration-200"
+              className="text-gray-500 dark:text-gray-300 rounded-md px-3 py-2 transition-colors duration-200 hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:bg-gray-200 dark:focus:bg-gray-700"
             >
               Історія
             </Link>
