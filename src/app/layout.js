@@ -1,12 +1,12 @@
-import { Roboto } from "next/font/google"; // Імпортуємо шрифт Roboto
+import { Roboto } from "next/font/google";
 import "./globals.css";
 import Header from "@/layouts/Header";
+import { ThemeProvider } from "@/components/ThemeProvider"; // Import ThemeProvider
 
-// Визначаємо шрифт Roboto
 const roboto = Roboto({
-  weight: ['300', '400', '500', '700'], // Вибираємо потрібні ваги шрифту
-  subsets: ["latin", "cyrillic"], // Додаємо кирилицю для української мови
-  variable: "--font-roboto", // Визначаємо CSS-змінну для шрифту
+  weight: ['300', '400', '500', '700'],
+  subsets: ["latin", "cyrillic"],
+  variable: "--font-roboto",
 });
 
 export const metadata = {
@@ -16,14 +16,19 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="uk">
-      {/* Застосовуємо шрифт Roboto до body */}
+    <html lang="uk" suppressHydrationWarning={true}>
       <body className={`${roboto.variable} font-sans antialiased`}>
-        <Header />
-
-        <main className="container mx-auto p-4">
-          {children}
-        </main>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Header />
+          <main className="container mx-auto p-4">
+            {children}
+          </main>
+        </ThemeProvider>
       </body>
     </html>
   );
