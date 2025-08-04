@@ -38,7 +38,7 @@ const CurrencyList = () => {
   }, []);
 
   if (loading) {
-    return <div className="text-center p-4 text-gray-700">Loading exchange rates...</div>;
+    return <div className="text-center p-4 text-gray-500 dark:text-gray-400">Loading exchange rates...</div>;
   }
 
   if (error) {
@@ -46,9 +46,8 @@ const CurrencyList = () => {
   }
 
   return (
-    <div className="w-full max-w-md mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden md:max-w-2xl mt-8 transform transition duration-500 hover:scale-105">
+    <div className="w-full max-w-md mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden md:max-w-2xl mt-8 transform transition-all duration-300 hover:scale-105">
       <div className="p-8">
-        {/* Надписи "Exchange Rates" та "Base Currency: UAH" видалено */}
         <div className="mt-4">
           <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
             <thead className="bg-gray-50 dark:bg-gray-900">
@@ -61,7 +60,7 @@ const CurrencyList = () => {
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
+            <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
               {rates && Object.entries(rates).map(([currency, rate]) => (
                 <tr key={currency} className="hover:bg-gray-100 dark:hover:bg-gray-700">
                   <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-gray-100">{currency}</td>

@@ -1,25 +1,18 @@
 @import "tailwindcss";
 
-:root {
-  --background: #f8fafc; /* Дуже світло-сірий для світлої теми */
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-roboto); /* Застосовуємо Roboto як основний sans-serif шрифт */
-  --font-mono: var(--font-geist-mono); /* Залишаємо Geist Mono, якщо він потрібен для коду */
-}
-
-@media (prefers-color-scheme: dark) {
+ @layer base {
   :root {
+    --background: #e9e9e9; /* Дуже світло-сірий для світлої теми */
+    --foreground: #171717;
+  }
+
+  .dark {
     --background: #1e293b; /* Темно-синьо-сірий для темної теми */
     --foreground: #ededed;
   }
-}
 
-body {
-  background: var(--background);
-  color: var(--foreground);
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+  }
 }
